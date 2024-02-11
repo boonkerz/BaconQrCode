@@ -10,6 +10,10 @@ use BaconQrCode\Renderer\Module\SquareModule;
 
 final class RendererStyle
 {
+    private int $y;
+
+    private int $x;
+
     /**
      * @var int
      */
@@ -40,13 +44,17 @@ final class RendererStyle
         int $margin = 4,
         ?ModuleInterface $module = null,
         ?EyeInterface $eye = null,
-        ?Fill $fill = null
+        ?Fill $fill = null,
+        int $x = 0,
+        int $y = 0
     ) {
         $this->margin = $margin;
         $this->size = $size;
         $this->module = $module ?: SquareModule::instance();
         $this->eye = $eye ?: new ModuleEye($this->module);
         $this->fill = $fill ?: Fill::default();
+        $this->x = $x;
+        $this->y = $y;
     }
 
     public function withSize(int $size) : self
@@ -87,4 +95,15 @@ final class RendererStyle
     {
         return $this->fill;
     }
+
+    public function getY(): int
+    {
+        return $this->y;
+    }
+
+    public function getX(): int
+    {
+        return $this->x;
+    }
+
 }
